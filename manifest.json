@@ -1,0 +1,11 @@
+{
+  "name": "SQLite CRUD",
+  "short_name": "SQLite CRUD",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "icon.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }]
+}

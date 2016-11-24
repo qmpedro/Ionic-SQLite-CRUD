@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="js/ng-cordova.min.js"></script>
+	  <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/index.controller.js"></script>
+    <script src="js/index.factory.js"></script>
+    <script src="js/index.constants.js"></script>
+  </head>
+  <body ng-app="starter" ng-controller="IndexController as indexCtrl">
+    
+    <ion-pane>
+      <ion-header-bar class="bar-header bar-stable">
+        <h1 class="title">Cadastro de Pessoas</h1>
+      </ion-header-bar>
+      <ion-content>
+        <div class="list">
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Primeiro Name</span>
+            <input type="text" placeholder="Primeiro Name" ng-model="nome.firstName">
+          </label>
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Último Name</span>
+            <input type="text" placeholder="Último Name" ng-model="nome.lastName">
+          </label>
+        </div>
+        <button class="button button-block button-positive" ng-click="indexCtrl.insere(nome)">
+          Cadastra
+        </button>
+
+        <div class="list">
+            <div class="item item-button-right" ng-repeat="nome in indexCtrl.nomes | orderBy : '-id' track by $index ">
+              ( {{nome.id}} ) {{nome.firstname}} {{nome.lastname}}
+              <div class="buttons">
+                <button class="button button-positive" ng-click="indexCtrl.deleta(nome.id)">
+                  <i class="icon ion-ios-trash-outline"></i>
+                </button>
+                <button class="button button-positive" ng-click="indexCtrl.edita(nome.id)">
+                  <i class="icon ion-compose"></i>
+                </button>
+              </div>
+            </div>
+        </div>
+        
+        <ion-icon name="heart"></ion-icon>
+
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
